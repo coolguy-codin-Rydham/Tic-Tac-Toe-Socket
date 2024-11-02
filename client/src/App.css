@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Happy+Monkey&display=swap");
+
+body {
+  background-color: #1f1f2f;
+  color: white; 
+  font-family: "Happy Monkey", system-ui;
+}
+
+.main-div{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  margin-top: 10vh;
+}
+
+.finished-state{
+  font-size: 20px;
+  text-align: center;
+}
+
+.water-background{
+  background-color: #4b495f;
+}
+
+.game-heading{
+  padding: 5px 20px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  text-align: center;
+  -o-border-radius: 5px;
+  font-size: 40px;
+}
+
+.square-wrapper{
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.move-detection{
+  display: flex;
+  width: 500px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left, .right{
+  height: 40px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  padding-bottom: 5px;
+  font-family:'Courier New', Courier, monospace;
+}
+
+.left{
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.right{
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 50px;
+}
+
+.play-online{
+  background-color: #f1da75;
+  color: black;
+  font-size: 50px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  outline: none;
+  padding: 0.5rem;
+  border:0px;
+  font-weight: bolder;
+  letter-spacing: 5px;
+  cursor: pointer;
+  margin-top: 35vh;
+}
