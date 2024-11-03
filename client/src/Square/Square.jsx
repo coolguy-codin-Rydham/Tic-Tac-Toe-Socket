@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PropTypes from "prop-types"; // Import PropTypes
+import PropTypes from "prop-types";
 import "./Square.css";
 
 const circleSvg = (
@@ -36,54 +36,84 @@ const crossSvg = (
 
 const Square = ({
   setGameState,
+  socket,
+  playingAs,
+  currentElement,
+  finishedArrayState,
   finishedState,
   id,
-  currPlayer,
-  setCurrPlayer,
-  finishedArrayState
+  currentPlayer,
+  setCurrentPlayer,
 }) => {
   const [icon, setIcon] = useState(null);
 
   const clickOnSquare = () => {
-
-    if(finishedState){
-      return ;
+    if (playingAs !== currentPlayer) {
+      return;
     }
+
+    if (finishedState) {
+      return;
+    }
+
     if (!icon) {
-      if (currPlayer === "circle") {
+      if (currentPlayer === "circle") {
         setIcon(circleSvg);
       } else {
         setIcon(crossSvg);
       }
-      const myCurrentPlayer = currPlayer;
-      setCurrPlayer(currPlayer === "circle" ? "cross" : "circle");
+
+      const myCurrentPlayer = currentPlayer;
+      socket.emit("playerMoveFromClient", {
+        state: {
+          id,
+          sign: myCurrentPlayer,
+        },
+      });
+
+      setCurrentPlayer(currentPlayer === "circle" ? "cross" : "circle");
 
       setGameState((prevState) => {
         let newState = [...prevState];
         const rowIndex = Math.floor(id / 3);
         const colIndex = id % 3;
         newState[rowIndex][colIndex] = myCurrentPlayer;
-        console.log(newState);
-        console.log(rowIndex, ", ", colIndex);
         return newState;
       });
     }
   };
 
   return (
-    <div className={`square ${finishedState?"not-allowed":""} ${finishedArrayState.includes(id)?finishedState+'-won':""}`} onClick={clickOnSquare}>
-      {icon}
+    <div
+      onClick={clickOnSquare}
+      className={`square ${finishedState ? "not-allowed" : ""}
+      ${currentPlayer !== playingAs ? "not-allowed" : ""}
+       ${finishedArrayState.includes(id) ? finishedState + "-won" : ""}
+       ${finishedState && finishedState !== playingAs ? "grey-background" : ""}
+       `}
+    >
+      {currentElement === "circle"
+        ? circleSvg
+        : currentElement === "cross"
+        ? crossSvg
+        : icon}
     </div>
   );
 };
 
+// Define PropTypes for the Square component
 Square.propTypes = {
-  setGameState: PropTypes.func.isRequired,
-  finishedState: PropTypes.string,
-  finishedArrayState: PropTypes.array,
-  id: PropTypes.number.isRequired,
-  currPlayer: PropTypes.string.isRequired,
-  setCurrPlayer: PropTypes.func.isRequired,
+  gameState: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
+  setGameState: PropTypes.func,
+  socket: PropTypes.object,
+  playingAs: PropTypes.string,
+  currentElement: PropTypes.string,
+  finishedArrayState: PropTypes.arrayOf(PropTypes.number),
+  setFinishedState: PropTypes.func,
+  finishedState: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  id: PropTypes.number,
+  currentPlayer: PropTypes.string,
+  setCurrentPlayer: PropTypes.func,
 };
 
 export default Square;

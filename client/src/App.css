@@ -1,90 +1,84 @@
-@import url("https://fonts.googleapis.com/css2?family=Happy+Monkey&display=swap");
-
-body {
-  background-color: #1f1f2f;
-  color: white; 
-  font-family: "Happy Monkey", system-ui;
-}
-
-.main-div{
-  display:flex;
+.main-div {
+  display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 5vh;
   flex-direction: column;
-
-  margin-top: 10vh;
 }
 
-.finished-state{
-  font-size: 20px;
-  text-align: center;
+.playOnline {
+  font-weight: 700;
+  border: none;
+  background-color: #e4ca56;
+  font-size: 60px;
+  cursor: pointer;
+  margin-top: 40vh;
+  padding: 6px 10px;
+  border-radius: 5px;
+  outline: none;
 }
 
-.water-background{
+.water-background {
   background-color: #4b495f;
 }
 
-.game-heading{
+.game-heading {
   padding: 5px 20px;
   border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
   text-align: center;
-  -o-border-radius: 5px;
   font-size: 40px;
 }
 
-.square-wrapper{
+.square-wrapper {
   display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 10px;
+  column-gap: 10px;
 }
 
-.move-detection{
+.move-detection {
   display: flex;
-  width: 500px;
-  align-items: center;
   justify-content: space-between;
-}
-
-.left, .right{
-  height: 40px;
-  width: 120px;
-  display: flex;
   align-items: center;
-  justify-content: center;
+  width: 400px;
+}
+
+.finished-state {
+  font-size: 30px;
   text-align: center;
-  font-size: 18px;
-  font-weight: 700;
-  padding-bottom: 5px;
-  font-family:'Courier New', Courier, monospace;
 }
 
-.left{
+.left,
+.right {
+  height: 30px;
+  width: 120px;
+  background-color: red;
   border-bottom-left-radius: 50px;
+  background-color: #4b495f;
   border-top-right-radius: 50px;
+  padding-top: 7px;
+  font-size: 18px;
+  padding-bottom: 5px;
+  text-align: center;
 }
 
-.right{
-  border-bottom-right-radius: 50px;
-  border-top-left-radius: 50px;
+.waiting {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  font-size: 44px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
-.play-online{
-  background-color: #f1da75;
-  color: black;
-  font-size: 50px;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  outline: none;
-  padding: 0.5rem;
-  border:0px;
-  font-weight: bolder;
-  letter-spacing: 5px;
-  cursor: pointer;
-  margin-top: 35vh;
+.current-move-cross {
+  background-color: #3fa7f0 !important;
+}
+
+.current-move-circle {
+  background-color: #dd7f9f !important;
 }
