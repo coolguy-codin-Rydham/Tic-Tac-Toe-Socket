@@ -1,10 +1,11 @@
 import { createServer } from "http";
 import { config } from "dotenv";
 import { Server } from "socket.io";
+import cors from "cors"
 config();
 const httpServer = createServer();
 const io = new Server(httpServer, {
-  cors: "*",
+  cors: "https://tic-tac-toe-socket-mu.vercel.app",
 });
 const PORT = process.env.PORT || 3001
 
